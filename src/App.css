@@ -1,0 +1,152 @@
+:root {
+  --color--primary : #7A5936;
+  --color--secondary : #AAA9AD;
+  --color--third : #103329;
+  --color--white : #FFFFFF;
+  --color--black : #000000;
+
+  /* Font Size */
+  /* Title */
+  --font--tit--5xl: 4.5em;
+  --font--tit--4xl: 3.75em;
+  --font--tit--3xl: 3em;
+  --font--tit--2xl: 2.25em;
+  --font--tit--xl: 1.5em;
+  --font--tit--lg: 1.312em;
+  --font--tit--md: 1.125em;
+  --font--tit--sm: 1em;
+  --font--tit--xs: 0.875em;
+  --font--tit--2xs: 0.75em;
+
+  /* Text */
+  --font--txt--3xl: 1.5em;
+  --font--txt--2xl: 1.375em;
+  --font--txt--xl: 1.25em;
+  --font--txt--lg: 1.125em;
+  --font--txt--md: 1em;
+  --font--txt--sm: 0.875em;
+  --font--txt--xs: 0.75em;
+  --font--txt--sm: 0.625em;
+
+  /* Font weight*/
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 900;
+}
+
+* {
+  margin : 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  display: flex;
+  width: 100 vw;
+  height: 100vh;
+
+  /* Background Gradient */
+  background: rgb(170,169,173);
+  background: radial-gradient(circle, rgba(170,169,173,1) 0%, rgba(138,127,128,1) 100%);
+
+  /* Animation */
+  transition: all 0.5s ease-in-out;
+
+  /* Type Face */
+  font-family: "rocinante-titling-variable", sans-serif;
+}
+
+.left {
+  display: none;
+
+  height: 100%;
+  width: 50%;
+
+  /* border: 1px red solid; */
+
+  transition: width 0.5s ease-in-out; /* 부드러운 애니메이션 */
+  
+}
+
+.right {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px blue solid; */
+
+  transition: width 0.5s ease-in-out; /* 부드러운 애니메이션 */
+}
+
+.visible {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+.half {
+  width: 50%;
+}
+
+.full {
+  width: 100%;
+}
+
+.body {
+  display: flex;
+  height: 100%;
+
+  flex-direction: column;
+  justify-content: center;
+
+  font-size : var(--font--tit--xl);
+  color: var(--color--white);
+  /* border: 1px black solid; */
+  padding: 2rem;
+  line-height: 1.5rem;
+  
+}
+
+.body p:nth-of-type(4n) {
+  margin-bottom: 2rem; 
+}
+
+.highlight {
+  color: var(--color--primary); 
+  font-weight: bold;
+}
+
+.char-span {
+  display: inline-block;
+  transition : transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.hovered .char-span {
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  opacity: 0.8;
+  color: var(--color--third);
+}
+
+@keyframes charFade {
+  0% {
+    transform : scale(1);
+    opacity : 1;
+  } 
+  50% {
+    transform: scale(1.5);
+    font-weight: bold;
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+

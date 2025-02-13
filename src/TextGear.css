@@ -1,0 +1,54 @@
+.text-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.text-gear{
+  display: flex;
+  transition: all 3s ease-in-out;
+}
+
+.linear {
+  flex-direction: row;
+  gap : 8px;
+}
+
+.circular{
+  position: relative;
+  display: inline-block;
+
+  --character-width: 1; /* In "ch" units */
+  --inner-angle: calc((360 / var(--total)) * 1deg);
+  --radius: -5ch; /* Works in Java Script*/
+}
+
+.circular [style*="--index"] {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-origin: center;
+  transform:
+    translate(-50%, -50%)
+    rotate(calc(var(--inner-angle) * var(--index)))
+    translateY(var(--radius));
+}
+
+.active {
+  display: inline-block;
+  font-size : var(--font--txt--3xl);
+  /* transform: scale(1.3); */
+  transition: font-size 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .circular {
+    animation: spin 6s infinite linear;
+  }
+  @keyframes spin {
+    to {
+      rotate: -360deg;
+    }
+  }
+}
