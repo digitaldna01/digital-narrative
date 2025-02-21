@@ -2,15 +2,40 @@ import React, { useEffect, useRef, useState } from "react";
 import "./TextGear.css";
 import "./App.css";
 
+import mechClick from "./assets/sounds/mech_click.mp3";
+import gearSpin from "./assets/sounds/gear_spin.mp3";
+
 const TextGear = ({ text, fontSize , color, fontWeight, setShowLeft}) => {
     const [clickCount, setClickCount] = useState(0); // circular state
     const [activeGroup, setActiveGroup] = useState(0); // Current Animation Group
+    const [volume, setVolume] = useState(0.2); // 🔊 initial Volumn Set(0.5 = 50%)
 
     const CHARS = text.split("");
     const INNER_ANGLE = 360 / CHARS.length;
     const radius = (1 / Math.sin(INNER_ANGLE * (Math.PI / 180))) * -1 + "ch";
 
+    // Audio Reference variable
+    const clickAudioRef = useRef(new Audio(mechClick));
+    const spinAudioRef = useRef(new Audio(gearSpin));
+
     const textRingRef = useRef(null);
+
+    // Initial Sound variable sets
+    useEffect(() => {
+        spinAudioRef.current.volume = volume; 
+        clickAudioRef.current.volume = volume;
+
+        // 🎵 오디오가 끝나면 다시 실행 (끊김 없는 루프)
+        spinAudioRef.current.addEventListener("ended", () => {
+            spinAudioRef.current.currentTime = 0; // ⏪ 처음으로 되감기
+            spinAudioRef.current.play();
+        });
+
+        return () => {
+            spinAudioRef.current.removeEventListener("ended", () => {}); // 💡 이벤트 리스너 정리
+        };
+    }, [volume]);
+
 
     // Get CSS variable
     const getCSSVariable = (variable) => {
@@ -34,7 +59,7 @@ const TextGear = ({ text, fontSize , color, fontWeight, setShowLeft}) => {
             setActiveGroup((prevGroup) => (prevGroup + 1) % 3); // Repeat 3 groups
         }, 500);
     
-         return () => clearInterval(interval);
+        return () => clearInterval(interval);
     }, [clickCount]);
 
     // After became circular, 
@@ -62,6 +87,11 @@ const TextGear = ({ text, fontSize , color, fontWeight, setShowLeft}) => {
     const handleClick = () => {
         if (clickCount < 1) {
             setClickCount(1);
+            clickAudioRef.current.play();
+
+            setTimeout(() => {
+                spinAudioRef.current.play(); // 🔄 12초짜리 기어 회전 사운드 재생 (루프)
+            }, 400); // 0.5초 후 실행
         } 
     };
 

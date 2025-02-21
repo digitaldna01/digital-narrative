@@ -1,5 +1,6 @@
 :root {
-  --color--primary : #7A5936;
+  /* --color--primary : #7A5936; */
+  --color--primary : #573f26;
   --color--secondary : #AAA9AD;
   --color--third : #103329;
   --color--white : #FFFFFF;
@@ -43,12 +44,17 @@
 
 .App {
   display: flex;
-  width: 100 vw;
+  width: 100vw;
   height: 100vh;
 
   /* Background Gradient */
-  background: rgb(170,169,173);
-  background: radial-gradient(circle, rgba(170,169,173,1) 0%, rgba(138,127,128,1) 100%);
+  /* background: rgb(170,169,173);
+  background: radial-gradient(circle, rgba(170,169,173,1) 0%, rgba(138,127,128,1) 100%); */
+  background: rgb(119,117,123);
+  background: -moz-linear-gradient(90deg, rgba(119,117,123,1) 0%, rgba(85,78,79,1) 100%);
+  background: -webkit-linear-gradient(90deg, rgba(119,117,123,1) 0%, rgba(85,78,79,1) 100%);
+  background: linear-gradient(90deg, rgba(119,117,123,1) 0%, rgba(85,78,79,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#77757b",endColorstr="#554e4f",GradientType=1);
 
   /* Animation */
   transition: all 0.5s ease-in-out;
@@ -105,6 +111,7 @@
   justify-content: center;
 
   font-size : var(--font--tit--xl);
+  font-weight: bold;
   color: var(--color--white);
   /* border: 1px black solid; */
   padding: 2rem;
