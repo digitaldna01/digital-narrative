@@ -1,13 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import { Canvas, useThree } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
+
+import React, { useState, useEffect, useMemo } from 'react';
 import './App.css';
 import TextGear from "./textgear.jsx";
+import StageModel from "./components/StageModel.jsx";
+import { ambientLight, pointLight } from "three";
 
 function App() {
 
+  // Whether to show the poem or not
   const [showLeft, setShowLeft] = useState(false);
+
+  // Current Stage for the models
+  const [currentStage, setCurrentStage] = useState(0);
+  console.log("Initial Stage:", currentStage);
+  const [clickable, setClickable] = useState(true);
+
+  // Current Stage Number (if == 0, hidden)
   const [hoveredIndex, setHoveredIndex] = useState(null);
+
   const highlightWords = ["cogs", "gears", "spin", "clockwork,", "beats", "wheel,", "dials...", "work", "factory", "nucleus...", "gravity", "notions", "lights", "moment,", "infinite.", "motion.", "tight"];
 
+  // Cogs effect of the poem's line
   useEffect(() => {
     if (showLeft) {
       const wordContainer = document.getElementById("word");
@@ -54,6 +69,41 @@ function App() {
       }
     }
   }, [showLeft, hoveredIndex]);
+  
+  // From `TextGear.js` when `setShowLeft(true)` starts, show stage 1
+  useEffect(() => {
+    if (showLeft) {
+      setTimeout(() => {
+        setCurrentStage(1); // After 3 sec Show Stage 1
+      }, 3000);
+    }
+  }, [showLeft]);
+
+  // when click each line os the poem move to the next `StageX` 
+  const handleTextClick = (event) => {
+    event.stopPropagation();
+    if (!clickable) return;
+    setClickable(false);
+    setTimeout(() => setClickable(true), 300);
+
+    setCurrentStage((prevStage) => {
+      const newStage = prevStage < 25 ? prevStage + 1 : prevStage;
+      console.log("Stage changed to:", newStage);
+      return newStage; // 최대값 유지
+    });
+  };
+
+  const CameraController = ({ currentStage }) => {
+    const { camera } = useThree();
+  
+    useEffect(() => {
+      camera.position.set(0, 0, currentStage <= 10 ? 15 : 30);
+      camera.updateProjectionMatrix();
+    }, [currentStage, camera]);
+  
+    return null;
+  };
+  
 
   return (
     <div className="App">
@@ -94,6 +144,7 @@ function App() {
               className={hoveredIndex === index ? "hovered" : ""}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
+              onClick={handleTextClick} // when click the each line => move the stage model to the next step
             >
               {line}
             </p>
@@ -101,8 +152,30 @@ function App() {
           </div>
         </div>
       <div className={`right ${showLeft ? 'half' : 'full'}`}>
-        <TextGear text="COGS AND GEARS " fontSize="txt--2xl" color='primary' fontWeight='bold' setShowLeft={setShowLeft} />
+        {/* First show `TextGear`, when it clicks show stage models*/}
+        {currentStage === 0 ?  (
+          <TextGear 
+            text="COGS AND GEARS " 
+            fontSize="txt--2xl" 
+            color='primary' 
+            fontWeight='bold' 
+            setShowLeft={setShowLeft} 
+          />
+        ) : (
+          <Canvas camera={{ fov: 50 }}>
+            {/* Camera Position */}
+            <CameraController currentStage={currentStage} />
+            {/* Overall Light */}
+            <ambientLight intensity={1.8} />
 
+            <directionalLight position={[5, 5, 5]} intensity={2} />
+            <directionalLight position={[-5, -5, -5]} intensity={0.5} />
+            <pointLight position={[0, 10, 10]} intensity={3} />
+            
+            <StageModel currentStage={currentStage}/>
+            <OrbitControls enableZoom={true}/>
+          </Canvas>
+        )}
       </div>
     </div>
   );

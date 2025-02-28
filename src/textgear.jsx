@@ -62,16 +62,25 @@ const TextGear = ({ text, fontSize , color, fontWeight, setShowLeft}) => {
         return () => clearInterval(interval);
     }, [clickCount]);
 
-    // After became circular, 
+    // After became Circular,
     useEffect(() => {
         if (clickCount === 1) {
-            const timer = setTimeout(() => {
+            setTimeout(() => {
                 setShowLeft(true);
-            }, 3000); // 4 seconds await
-
-            return () => clearTimeout(timer); 
+            }, 3000); // 3초 후 Stage1 자동 표시
         }
     }, [clickCount, setShowLeft]);
+
+    // After became circular, 
+    // useEffect(() => {
+    //     if (clickCount === 1) {
+    //         const timer = setTimeout(() => {
+    //             setShowLeft(true);
+    //         }, 3000); // 4 seconds await
+
+    //         return () => clearTimeout(timer); 
+    //     }
+    // }, [clickCount, setShowLeft]);
 
     
         // **Animation applying groups**
