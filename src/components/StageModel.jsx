@@ -22,29 +22,18 @@ export default function StageModel({ currentStage }) {
 
       setStageObjects(sortedStages);
     }
-  }, [gltf.scene]); // ✅ 모델이 처음 로드될 때만 실행되도록 설정
+  }, [gltf.scene]); // ✅ Only render model once 
 
   console.log("Filtered & Sorted Stages:", stageObjects.map(child => child.name));
 
-  
-  // 🔹 기어 회전 적용을 위한 ref
-  // const rotatingGroup = useRef(null);
 
-  // 🔹 전체 Stage Group을 회전시키기
-  // useFrame(() => {
-  //   if (rotatingGroup.current) {
-  //     rotatingGroup.current.rotation.y += 0.01; // 전체 group을 회전
-  //   }
-  // });
-  
   return (
-    // <group ref={rotatingGroup}>
     <group >
       {stageObjects.map((stage, index) => (
         <primitive
             key={stage.name}
             object={stage}
-            visible={index < currentStage} // 단계별 활성화
+            visible={index <= currentStage} // 단계별 활성화
           />
       ))}
     </group>
@@ -53,4 +42,3 @@ export default function StageModel({ currentStage }) {
 
 // preload models
 useGLTF.preload("/models/allStages.glb");
-

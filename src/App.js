@@ -4,6 +4,7 @@ import { OrbitControls } from "@react-three/drei";
 import React, { useState, useEffect, useMemo } from 'react';
 import './App.css';
 import TextGear from "./textgear.jsx";
+import PickerWheel from "./components/PickerWheel";
 import StageModel from "./components/StageModel.jsx";
 import { ambientLight, pointLight } from "three";
 
@@ -13,7 +14,7 @@ function App() {
   const [showLeft, setShowLeft] = useState(false);
 
   // Current Stage for the models
-  const [currentStage, setCurrentStage] = useState(0);
+  const [currentStage, setCurrentStage] = useState(-1);
   console.log("Initial Stage:", currentStage);
   const [clickable, setClickable] = useState(true);
 
@@ -74,8 +75,8 @@ function App() {
   useEffect(() => {
     if (showLeft) {
       setTimeout(() => {
-        setCurrentStage(1); // After 3 sec Show Stage 1
-      }, 3000);
+        setCurrentStage(0); // After 3 sec Show Stage 1
+      }, 1500);
     }
   }, [showLeft]);
 
@@ -108,7 +109,42 @@ function App() {
   return (
     <div className="App">
       <div className={`left ${showLeft ? 'visible' : 'hidden'}`}>
-        <div className='body' id='word'>
+        <PickerWheel 
+        poemLines={[
+          "Know that my heart beats for you...",
+          "Every crank of the wheel, turn of dials...",
+          "Leading to my every breath and every sigh",
+          "Wishing every moment would stay a while...",
+          "Unaware of themselves hard at work,",
+          "The cogs in my mind are constantly spinning...",
+          "The gears in my head are lodged in place...",
+          "Cogs and gears like clockwork, carelessly turning...",
+          "Like a factory of sorts,",
+          "They keep churning out ideas.",
+          "Conceived notions that only had been",
+          "Spawned by my mind's nucleus...",
+          "Blinked lights signaling ways,",
+          "And means to sweep you into the air,",
+          "Then leave you lofted for second....",
+          "Without a trace of fear or care.",
+          "At that moment, what I'd give to just admire...",
+          "You floating against a backdrop of stars.",
+          "An image frozen in infinite.",
+          "An image free from blemishes or scars.",
+          "Then when gravity claims you back,",
+          "You'd fall the most graceful of falls...",
+          "A fall in the slowest of motion.",
+          "A fall led by my loving calls.",
+          "Fear not darling for my arms would be there...",
+          "To catch you and hold you close in a tight embrace.",
+          "Cheek to cheek, chest to chest... You'd then know that,",
+          "Cogs and gears spin only for you in this very same place...",
+        ]}
+        currentStage={currentStage}
+        setCurrentStage={setCurrentStage}/>
+
+        
+        {/* <div className='body' id='word'>
         {[
             "Know that my heart beats for you...",
             "Every crank of the wheel, turn of dials...",
@@ -149,11 +185,11 @@ function App() {
               {line}
             </p>
           ))}
-          </div>
+          </div> */}
         </div>
       <div className={`right ${showLeft ? 'half' : 'full'}`}>
         {/* First show `TextGear`, when it clicks show stage models*/}
-        {currentStage === 0 ?  (
+        {currentStage === -1 ?  (
           <TextGear 
             text="COGS AND GEARS " 
             fontSize="txt--2xl" 

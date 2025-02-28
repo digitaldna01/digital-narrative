@@ -21,20 +21,20 @@ const TextGear = ({ text, fontSize , color, fontWeight, setShowLeft}) => {
     const textRingRef = useRef(null);
 
     // Initial Sound variable sets
-    useEffect(() => {
-        spinAudioRef.current.volume = volume; 
-        clickAudioRef.current.volume = volume;
+    // useEffect(() => {
+    //     spinAudioRef.current.volume = volume; 
+    //     clickAudioRef.current.volume = volume;
 
-        // 🎵 오디오가 끝나면 다시 실행 (끊김 없는 루프)
-        spinAudioRef.current.addEventListener("ended", () => {
-            spinAudioRef.current.currentTime = 0; // ⏪ 처음으로 되감기
-            spinAudioRef.current.play();
-        });
+    //     // 🎵 오디오가 끝나면 다시 실행 (끊김 없는 루프)
+    //     spinAudioRef.current.addEventListener("ended", () => {
+    //         spinAudioRef.current.currentTime = 0; // ⏪ 처음으로 되감기
+    //         spinAudioRef.current.play();
+    //     });
 
-        return () => {
-            spinAudioRef.current.removeEventListener("ended", () => {}); // 💡 이벤트 리스너 정리
-        };
-    }, [volume]);
+    //     return () => {
+    //         spinAudioRef.current.removeEventListener("ended", () => {}); // 💡 이벤트 리스너 정리
+    //     };
+    // }, [volume]);
 
 
     // Get CSS variable
@@ -71,18 +71,6 @@ const TextGear = ({ text, fontSize , color, fontWeight, setShowLeft}) => {
         }
     }, [clickCount, setShowLeft]);
 
-    // After became circular, 
-    // useEffect(() => {
-    //     if (clickCount === 1) {
-    //         const timer = setTimeout(() => {
-    //             setShowLeft(true);
-    //         }, 3000); // 4 seconds await
-
-    //         return () => clearTimeout(timer); 
-    //     }
-    // }, [clickCount, setShowLeft]);
-
-    
         // **Animation applying groups**
     const getActiveChars = (index) => {
         const groupOrder = [
