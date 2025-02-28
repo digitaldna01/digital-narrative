@@ -1,6 +1,6 @@
 /* 전체 Picker Wheel 컨테이너 */
 .picker-wrapper {
-    width: 500px;
+    width: 600px;
     height: 300px;
     display: flex;
     flex-direction: column;
@@ -8,9 +8,8 @@
     justify-content: center;
 }
 
-
 .picker-container {
-    width: 500px;  /* ✅ 현재 문장은 중앙 컨테이너에만 */
+    width: 600px;  /* ✅  Current Line is only in the middle container */
     height: 100px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
@@ -52,7 +51,7 @@
 
 /* Curr Chosen Line */
 .picker-line.active {
-    font-size: var(--font--txt--xl);
+    font-size: var(--font--txt--lg);
     font-weight: bold;
     color: white;
     opacity: 1;
@@ -68,3 +67,9 @@
 .picker-line.bottom-2 { font-size: 20px; opacity: 0.5; transform: translateY(30px);  }
 .picker-line.bottom-3 { font-size: 22px; opacity: 0.7; transform: translateY(20px);  }
 
+/*  Text Decoration */
+.highlight-word {
+    color: var(--color--primary); 
+    font-weight: bold;
+    /* text-shadow: 0px 0px 8px rgba(255, 215, 0, 0.8); */
+}

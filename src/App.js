@@ -76,7 +76,7 @@ function App() {
     if (showLeft) {
       setTimeout(() => {
         setCurrentStage(0); // After 3 sec Show Stage 1
-      }, 1500);
+      }, 500);
     }
   }, [showLeft]);
 
@@ -98,7 +98,7 @@ function App() {
     const { camera } = useThree();
   
     useEffect(() => {
-      camera.position.set(0, 0, currentStage <= 10 ? 15 : 30);
+      camera.position.set(0, 0, currentStage <= 9 ? 15 : 30);
       camera.updateProjectionMatrix();
     }, [currentStage, camera]);
   
