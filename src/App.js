@@ -109,7 +109,7 @@ function App() {
   return (
     <div className="App">
       <div className={`left ${showLeft ? 'visible' : 'hidden'}`}>
-      <div class="title">
+        <div class="title" onClick={}>
           <p>
             Cogs and Gears
           </p>
@@ -149,12 +149,44 @@ function App() {
         setCurrentStage={setCurrentStage}/>
         <div class="credit">
           <p>
-            By RYU
+            By RYN
           </p>
         </div>
+        </div>
+      <div className={`right ${showLeft ? 'half' : 'full'}`}>
+        {/* First show `TextGear`, when it clicks show stage models*/}
+        {currentStage === -1 ?  (
+          <TextGear 
+            text="COGS AND GEARS " 
+            fontSize="txt--2xl" 
+            color='primary' 
+            fontWeight='bold' 
+            setShowLeft={setShowLeft} 
+          />
+        ) : (
+          <Canvas camera={{ fov: 50 }}>
+            {/* Camera Position */}
+            <CameraController currentStage={currentStage} />
+            {/* Overall Light */}
+            <ambientLight intensity={1.8} />
 
-        
-        {/* <div className='body' id='word'>
+            <directionalLight position={[5, 5, 5]} intensity={2} />
+            <directionalLight position={[-5, -5, -5]} intensity={0.5} />
+            <pointLight position={[0, 10, 10]} intensity={3} />
+            
+            <StageModel currentStage={currentStage}/>
+            <OrbitControls enableZoom={true}/>
+          </Canvas>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default App;
+
+
+{/* <div className='body' id='word'>
         {[
             "Know that my heart beats for you...",
             "Every crank of the wheel, turn of dials...",
@@ -196,35 +228,3 @@ function App() {
             </p>
           ))}
           </div> */}
-        </div>
-      <div className={`right ${showLeft ? 'half' : 'full'}`}>
-        {/* First show `TextGear`, when it clicks show stage models*/}
-        {currentStage === -1 ?  (
-          <TextGear 
-            text="COGS AND GEARS " 
-            fontSize="txt--2xl" 
-            color='primary' 
-            fontWeight='bold' 
-            setShowLeft={setShowLeft} 
-          />
-        ) : (
-          <Canvas camera={{ fov: 50 }}>
-            {/* Camera Position */}
-            <CameraController currentStage={currentStage} />
-            {/* Overall Light */}
-            <ambientLight intensity={1.8} />
-
-            <directionalLight position={[5, 5, 5]} intensity={2} />
-            <directionalLight position={[-5, -5, -5]} intensity={0.5} />
-            <pointLight position={[0, 10, 10]} intensity={3} />
-            
-            <StageModel currentStage={currentStage}/>
-            <OrbitControls enableZoom={true}/>
-          </Canvas>
-        )}
-      </div>
-    </div>
-  );
-}
-
-export default App;
