@@ -68,9 +68,8 @@
   flex-direction: column;
   height: 100%;
   width: 50%;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  /* border: 1px red solid; */
 
   transition: width 0.5s ease-in-out; /* 부드러운 애니메이션 */
   
@@ -102,6 +101,19 @@
 
 .full {
   width: 100%;
+}
+
+.title {
+  text-align: center;
+  font-weight: bold;
+  color: var(--color--primary);
+  font-size: var(--font--tit--xl);
+}
+.credit {
+  text-align: center;
+  color: var(--color--primary);
+  font-weight: bold;
+  
 }
 
 .body {

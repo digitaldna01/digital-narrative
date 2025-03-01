@@ -109,6 +109,11 @@ function App() {
   return (
     <div className="App">
       <div className={`left ${showLeft ? 'visible' : 'hidden'}`}>
+      <div class="title">
+          <p>
+            Cogs and Gears
+          </p>
+        </div>
         <PickerWheel 
         poemLines={[
           "Know that my heart beats for you...",
@@ -142,6 +147,11 @@ function App() {
         ]}
         currentStage={currentStage}
         setCurrentStage={setCurrentStage}/>
+        <div class="credit">
+          <p>
+            By RYU
+          </p>
+        </div>
 
         
         {/* <div className='body' id='word'>

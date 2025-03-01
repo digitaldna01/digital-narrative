@@ -9,8 +9,13 @@ import sound4 from "../assets/sounds/transition4.mp3";
 import sound5 from "../assets/sounds/transition5.mp3";
 import sound6 from "../assets/sounds/transition6.mp3";
 
-const PickerWheel = ({ poemLines, currentStage, setCurrentStage }) => {
+// Import Gif
+import gearGif from "../assets/gif/gear.webp";
 
+const PickerWheel = ({ poemLines, currentStage, setCurrentStage }) => {
+    // []
+    const [scrollTimeout, setScrollTimeout] = useState(null);
+    
     // [ Sounds Interaction ]
     const transitionSounds = useRef([
         new Audio(sound1),
@@ -22,6 +27,28 @@ const PickerWheel = ({ poemLines, currentStage, setCurrentStage }) => {
     ]);
 
     transitionSounds.current.forEach(sound => sound.volume = 0.5);
+
+    useEffect(() => {
+        const handleWheel = (event) => {
+            if (scrollTimeout) return; // ✅ 연속 휠 스크롤 방지 (딜레이 추가)
+
+            if (event.deltaY > 0) {
+                handleNext();  // ⬇️ 아래로 스크롤 → 다음 문장
+            } else {
+                handlePrev();  // ⬆️ 위로 스크롤 → 이전 문장
+            }
+
+            // 300ms 동안 추가 입력 방지 (너무 빠르게 스크롤되지 않도록)
+            const timeout = setTimeout(() => setScrollTimeout(null), 300);
+            setScrollTimeout(timeout);
+        };
+
+        window.addEventListener("wheel", handleWheel);
+        return () => {
+            window.removeEventListener("wheel", handleWheel);
+            if (scrollTimeout) clearTimeout(scrollTimeout);
+        };
+    }, [currentStage, scrollTimeout]);
 
     const playRandomSound = () => {
         const randomIndex = Math.floor(Math.random() * transitionSounds.current.length);
@@ -46,16 +73,24 @@ const PickerWheel = ({ poemLines, currentStage, setCurrentStage }) => {
     };
 
     // Text Decoration
-    const highlightWords = ["cogs", "gears", "spin", "clockwork,", "beats", "wheel,", "dials...", "work", "factory", "nucleus...", "gravity", "notions", "lights", "moment,", "infinite.", "motion.", "tight"];
+    const highlightWords1 = ["cogs", "gears", "spin", "clockwork,", "beats", "wheel,", "dials...", "work", "factory", "nucleus...", "gravity", "notions", "lights", "moment,", "infinite.", "motion.", "tight", "hard", "work,", "arms"];
+    const highlightWords2 = ["heart", "cheek", "you"];
 
     const highlightText = (text) => {
         if (!text) return null; 
-        
-        const words = text.split(" ").map((word, index) => {
-            const isHighlighted = highlightWords.includes(word.toLowerCase());
+
+        const words = text.split(" ").map((word, index, array) => {
+            const lowerWord = word.toLowerCase();
+            const isHighlighted1 = highlightWords1.includes(lowerWord);
+            const isHighlighted2 = highlightWords2.includes(lowerWord)
+
             return (
-                <span key={index} className={isHighlighted ? "highlight-word" : ""}>
-                    {word}{" "}
+                <span 
+                    key={index} 
+                    className={isHighlighted1 ? "highlight-word1" : isHighlighted2 ? "highlight-word2" : ""}
+                >
+                    {word}{index !== array.length - 1 ? "\u00A0" : ""}
+                    {/* {word}{" "} */}
                 </span>
             );
         });
@@ -64,7 +99,6 @@ const PickerWheel = ({ poemLines, currentStage, setCurrentStage }) => {
     };
 
     return (
-
             <div className="picker-wrapper">
                 {/* Place holder to maintain the height */}
                 {currentStage < 3 && <div className="picker-placeholder"></div>}
@@ -76,14 +110,17 @@ const PickerWheel = ({ poemLines, currentStage, setCurrentStage }) => {
 
                 {/* Curr Line */}
                 <div className="picker-container" onClick={handleNext}>
+                    <img src={gearGif} alt="Rotating Gear" className="gear-gif left1" /> 
+                    <img src={gearGif} alt="Rotating Gear" className="gear-gif right" /> 
                     <p className="picker-line active">{highlightText(poemLines[currentStage])}</p>
+                    
                 </div>
 
                 {/* Next Line */}
                 {currentStage < poemLines.length - 1 && <p className="picker-line bottom-3" onClick={handleNext}> {poemLines[currentStage + 1]} </p>}
                 {currentStage < poemLines.length - 2 && <p className="picker-line bottom-2" onClick={handleNext}>{poemLines[currentStage + 2]}</p>}
                 {currentStage < poemLines.length - 3 && <p className="picker-line bottom" onClick={handleNext}>{poemLines[currentStage + 3]}</p>}
-
+                
             </div>
     );
 };
