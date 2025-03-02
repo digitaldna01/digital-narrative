@@ -109,7 +109,7 @@ function App() {
   return (
     <div className="App">
       <div className={`left ${showLeft ? 'visible' : 'hidden'}`}>
-        <div class="title" onClick={}>
+        <div class="title" >
           <p>
             Cogs and Gears
           </p>
