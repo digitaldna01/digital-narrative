@@ -1,3 +1,4 @@
+import React from 'react';
 import { useGLTF } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";

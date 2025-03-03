@@ -20,22 +20,6 @@ const TextGear = ({ text, fontSize , color, fontWeight, setShowLeft}) => {
 
     const textRingRef = useRef(null);
 
-    // Initial Sound variable sets
-    // useEffect(() => {
-    //     spinAudioRef.current.volume = volume; 
-    //     clickAudioRef.current.volume = volume;
-
-    //     // 🎵 오디오가 끝나면 다시 실행 (끊김 없는 루프)
-    //     spinAudioRef.current.addEventListener("ended", () => {
-    //         spinAudioRef.current.currentTime = 0; // ⏪ 처음으로 되감기
-    //         spinAudioRef.current.play();
-    //     });
-
-    //     return () => {
-    //         spinAudioRef.current.removeEventListener("ended", () => {}); // 💡 이벤트 리스너 정리
-    //     };
-    // }, [volume]);
-
 
     // Get CSS variable
     const getCSSVariable = (variable) => {
@@ -88,6 +72,11 @@ const TextGear = ({ text, fontSize , color, fontWeight, setShowLeft}) => {
 
             setTimeout(() => {
                 spinAudioRef.current.play(); // 🔄 12초짜리 기어 회전 사운드 재생 (루프)
+                
+                setTimeout(() => {
+                    spinAudioRef.current.pause();
+                    spinAudioRef.current.currentTime = 0; // Reset to the beginning
+                }, 6000);
             }, 400); // 0.5초 후 실행
         } 
     };

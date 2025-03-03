@@ -7,11 +7,16 @@ import TextGear from "./textgear.jsx";
 import PickerWheel from "./components/PickerWheel";
 import StageModel from "./components/StageModel.jsx";
 import { ambientLight, pointLight } from "three";
+import Popup from "./components/PopUp.jsx";
 
 function App() {
 
   // Whether to show the poem or not
   const [showLeft, setShowLeft] = useState(false);
+
+  // Whether to show the pop up page or not
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
 
   // Current Stage for the models
   const [currentStage, setCurrentStage] = useState(-1);
@@ -109,8 +114,8 @@ function App() {
   return (
     <div className="App">
       <div className={`left ${showLeft ? 'visible' : 'hidden'}`}>
-        <div class="title" >
-          <p>
+        <div class="title" onClick={() => setIsPopupOpen(true)}>
+          <p className="cursor-pointer hover:scale-105 transition-transform duration-300">
             Cogs and Gears
           </p>
         </div>
@@ -179,52 +184,9 @@ function App() {
           </Canvas>
         )}
       </div>
+      <Popup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)} />
     </div>
   );
 }
 
 export default App;
-
-
-{/* <div className='body' id='word'>
-        {[
-            "Know that my heart beats for you...",
-            "Every crank of the wheel, turn of dials...",
-            "Leading to my every breath and every sigh",
-            "Wishing every moment would stay a while...",
-            "Unaware of themselves hard at work,",
-            "The cogs in my mind are constantly spinning...",
-            "The gears in my head are lodged in place...",
-            "Cogs and gears like clockwork, carelessly turning...",
-            "Like a factory of sorts,",
-            "They keep churning out ideas.",
-            "Conceived notions that only had been",
-            "Spawned by my mind's nucleus...",
-            "Blinked lights signaling ways,",
-            "And means to sweep you into the air,",
-            "Then leave you lofted for second....",
-            "Without a trace of fear or care.",
-            "At that moment, what I'd give to just admire...",
-            "You floating against a backdrop of stars.",
-            "An image frozen in infinite.",
-            "An image free from blemishes or scars.",
-            "Then when gravity claims you back,",
-            "You'd fall the most graceful of falls...",
-            "A fall in the slowest of motion.",
-            "A fall led by my loving calls.",
-            "Fear not darling for my arms would be there...",
-            "To catch you and hold you close in a tight embrace.",
-            "Cheek to cheek, chest to chest... You'd then know that,",
-            "Cogs and gears spin only for you in this very same place...",
-          ].map((line, index) => (
-            <p
-              key={index}
-              className={hoveredIndex === index ? "hovered" : ""}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              onClick={handleTextClick} // when click the each line => move the stage model to the next step
-            >
-              {line}
-            </p>
-          ))}
-          </div> */}
