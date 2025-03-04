@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 
 export default function StageModel({ currentStage }) {
-  const gltf = useGLTF("/models/allStages.glb");
+  const gltf = useGLTF("https://digitaldna01.github.io/digital-narrative/models/allStages.glb");
   const [stageObjects, setStageObjects] = useState([]);
 
   useEffect(() => {

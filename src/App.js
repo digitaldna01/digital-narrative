@@ -152,7 +152,7 @@ function App() {
         ]}
         currentStage={currentStage}
         setCurrentStage={setCurrentStage}/>
-        <div class="credit">
+        <div class="author">
           <p>
             By RYN
           </p>
