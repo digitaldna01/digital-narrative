@@ -115,7 +115,7 @@ function App() {
     <div className="App">
       <div className={`left ${showLeft ? 'visible' : 'hidden'}`}>
         <div class="title" onClick={() => setIsPopupOpen(true)}>
-          <p className="cursor-pointer hover:scale-105 transition-transform duration-300">
+          <p className="cursor-pointer">
             Cogs and Gears
           </p>
         </div>

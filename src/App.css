@@ -132,6 +132,9 @@
   
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
 /* .body p:nth-of-type(4n) {
   margin-bottom: 1.5em; 
 }
