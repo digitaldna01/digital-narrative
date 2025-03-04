@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/digital-narrative/static/css/main.df56b7d2.css",
-    "main.js": "/digital-narrative/static/js/main.b97b74df.js",
+    "main.css": "/digital-narrative/static/css/main.c4819a01.css",
+    "main.js": "/digital-narrative/static/js/main.f9186579.js",
     "static/js/488.2ff3aba3.chunk.js": "/digital-narrative/static/js/488.2ff3aba3.chunk.js",
     "static/media/gear_spin.mp3": "/digital-narrative/static/media/gear_spin.0c0a206c87ead9d6536b.mp3",
     "static/media/transition1.mp3": "/digital-narrative/static/media/transition1.a4fa5993b16ebf9437c1.mp3",
@@ -13,12 +13,12 @@
     "static/media/transition2.mp3": "/digital-narrative/static/media/transition2.bea18e11b8c8f7ca972d.mp3",
     "static/media/transition6.mp3": "/digital-narrative/static/media/transition6.a58eb0fd43f2c2489938.mp3",
     "index.html": "/digital-narrative/index.html",
-    "main.df56b7d2.css.map": "/digital-narrative/static/css/main.df56b7d2.css.map",
-    "main.b97b74df.js.map": "/digital-narrative/static/js/main.b97b74df.js.map",
+    "main.c4819a01.css.map": "/digital-narrative/static/css/main.c4819a01.css.map",
+    "main.f9186579.js.map": "/digital-narrative/static/js/main.f9186579.js.map",
     "488.2ff3aba3.chunk.js.map": "/digital-narrative/static/js/488.2ff3aba3.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.df56b7d2.css",
-    "static/js/main.b97b74df.js"
+    "static/css/main.c4819a01.css",
+    "static/js/main.f9186579.js"
   ]
 }
