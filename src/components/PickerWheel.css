@@ -1,6 +1,6 @@
 /* 전체 Picker Wheel 컨테이너 */
 .picker-wrapper {
-    width: 600px;
+    width: 700px;
     height: 300px;
     display: flex;
     flex-direction: column;
@@ -9,7 +9,7 @@
 }
 
 .picker-container {
-    width: 600px;  /* ✅  Current Line is only in the middle container */
+    width: 700px;  /* ✅  Current Line is only in the middle container */
     height: 100px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
