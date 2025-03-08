@@ -17,7 +17,7 @@ const Popup = ({ isOpen, onClose }) => {
                 <div className="popup-text">
                     <div className="description">
                         <p className="popup-title">PROJECT DESCRIPTION</p>
-                        <p className="descrip-text">RYU’s COGS AND GEARS explores the mechanical and emotional forces that drive human thought and devotion. Inspired by this, I translated the poem’s central metaphor into an interactive experience—where each verse represents a small, moving gear, gradually assembling into a complete heart. As the poem progresses, scattered fragments come together, mirroring how emotions, like machinery, build toward something whole. This project brings the poem to life, transforming words into motion, showing how love and thought are intricate mechanisms constantly turning, always in motion toward something greater.</p>
+                        <p className="descrip-text">Ryn’s <em>`COGS AND GEARS`</em> explores the mechanical and emotional forces that drive human thought and devotion. Inspired by this, I translated the poem’s central metaphor into an interactive experience—where each verse represents a small, moving gear, gradually assembling into a complete heart. As the poem progresses, scattered fragments come together, mirroring how emotions, like machinery, build toward something whole. This project brings the poem to life, transforming words into motion, showing how love and thought are intricate mechanisms constantly turning, always in motion toward something greater.</p>
                     </div>
                     <div className="letter">
                         <p className="popup-title">TO YOU</p>
