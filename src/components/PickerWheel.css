@@ -1,7 +1,7 @@
 /* 전체 Picker Wheel 컨테이너 */
 .picker-wrapper {
-    width: 700px;
-    height: 300px;
+    width: 90%;
+    height: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,7 +9,7 @@
 }
 
 .picker-container {
-    width: 700px;  /* ✅  Current Line is only in the middle container */
+    width: 100%;  /* ✅  Current Line is only in the middle container */
     height: 100px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
@@ -60,13 +60,13 @@
 }
 
 /* Prev and Next Lines (Blar) */
-.picker-line.top { font-size: 18px; opacity: 0.3; transform: translateY(-40px);}
-.picker-line.top-2 { font-size: 20px; opacity: 0.5; transform: translateY(-30px);}
-.picker-line.top-3 { font-size: 22px; opacity: 0.7; transform: translateY(-20px); }
+.picker-line.top { font-size: var(--font--txt--sm); opacity: 0.3; transform: translateY(-40px);}
+.picker-line.top-2 { font-size: var(--font--txt--sm); opacity: 0.5; transform: translateY(-30px);}
+.picker-line.top-3 { font-size: var(--font--txt--md); opacity: 0.7; transform: translateY(-20px); }
 
-.picker-line.bottom { font-size: 18px; opacity: 0.3; transform: translateY(40px);  }
-.picker-line.bottom-2 { font-size: 20px; opacity: 0.5; transform: translateY(30px);  }
-.picker-line.bottom-3 { font-size: 22px; opacity: 0.7; transform: translateY(20px);  }
+.picker-line.bottom { font-size: var(--font--txt--xs); opacity: 0.3; transform: translateY(40px);  }
+.picker-line.bottom-2 { font-size: var(--font--txt--sm); opacity: 0.5; transform: translateY(30px);  }
+.picker-line.bottom-3 { font-size: var(--font--txt--md); opacity: 0.7; transform: translateY(20px);  }
 
 /*  Text Decoration */
 .highlight-word1 {
@@ -130,4 +130,30 @@
 
 .gear-gif.right {
     right: 0px;
+}
+
+
+@media (max-width: 1000px) {
+    .picker-wrapper {
+        width: 90%;
+        max-width: 500px;
+        /* min-width: 300px; */
+        height: 100%;
+        /* min-height: 200px; */
+    }
+
+    .picker-container {
+        width: 100%;  /* ✅  Current Line is only in the middle container */
+        max-width: 500px;
+        height: auto;
+    }
+
+    .picker-line {
+        margin: 8px 0  0 0;  /* ✅ line height */
+    }
+
+    .gear-gif {
+        width: 32px;  /* ✅ 원하는 크기로 조절 */
+    }
+
 }

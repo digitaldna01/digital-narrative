@@ -27,6 +27,7 @@ const Popup = ({ isOpen, onClose }) => {
                     </div>
                 </div>
                 <div className="credit">
+                    <div className="credit-row">
                 <div className="credit-item">
                     <p className="credit-title">DESIGN AND WIREFRAME</p>
                     <p className="credit-text"><a href="https://www.figma.com/design/DX7tURUsSKHPRJ6j6ipVw3/Digital-Narrative?node-id=0-1&t=k8E06qrFC5eaEgN6-1" target="_blank">BY FIGMA | LINK</a></p>
@@ -49,6 +50,7 @@ const Popup = ({ isOpen, onClose }) => {
                 <div className="credit-item">
                     <p className="credit-title">POEM AUTHOR</p>
                     <p className="credit-text">BY RYN</p>
+                </div>
                 </div>
                 </div>
             </div>

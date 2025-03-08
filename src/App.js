@@ -114,6 +114,7 @@ function App() {
   return (
     <div className="App">
       <div className={`left ${showLeft ? 'visible' : 'hidden'}`}>
+        <div className="left-container">
         <div class="title" onClick={() => setIsPopupOpen(true)}>
           <p className="cursor-pointer">
             Cogs and Gears
@@ -156,6 +157,7 @@ function App() {
           <p>
             By RYN
           </p>
+        </div>
         </div>
         </div>
       <div className={`right ${showLeft ? 'half' : 'full'}`}>
